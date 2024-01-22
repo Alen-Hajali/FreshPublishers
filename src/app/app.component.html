@@ -1,0 +1,12 @@
+<style>
+
+</style>
+
+<main class="main">
+  <app-navbar />
+
+  <span *ngIf="posts.length === 0; else filledPosts">No posts available...</span>
+  <ng-template #filledPosts>
+    <app-post-card *ngFor="let post of posts" [post]="post" />
+  </ng-template>
+</main>
