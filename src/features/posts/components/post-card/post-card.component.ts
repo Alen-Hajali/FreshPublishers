@@ -1,9 +1,7 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnInit,
-  Output,
 } from '@angular/core';
 import {ExpandableCardComponent} from "../../../../components/expandable-card/expandable-card.component";
 import {CommonModule} from "@angular/common";
@@ -34,13 +32,13 @@ import {MatListItem, MatListItemTitle} from "@angular/material/list";
       </div>
 
       <app-list description>
-        <span>UserId</span>
+        <div class="list-title">UserId</div>
         <app-list-item>{{ cardBody?.userId }}</app-list-item>
 
-        <span>Body</span>
+        <div class="list-title">Body</div>
         <app-list-item>{{ cardBody?.body }}</app-list-item>
 
-        <span>Comments ({{ cardBody?.comments?.length }})</span>
+        <div class="list-title">Comments ({{ cardBody?.comments?.length }})</div>
         <app-list-item *ngIf="cardBody?.comments?.length === 0; else filledComments">-</app-list-item>
         <ng-template #filledComments>
           <div class="comment-wrapper" *ngFor="let comment of cardBody?.comments">
@@ -48,7 +46,6 @@ import {MatListItem, MatListItemTitle} from "@angular/material/list";
             <app-list-item>email: {{ comment.email }}</app-list-item>
             <app-list-item>body: {{ comment.body }}</app-list-item>
           </div>
-
         </ng-template>
       </app-list>
     </app-expandable-card>
@@ -61,19 +58,21 @@ import {MatListItem, MatListItemTitle} from "@angular/material/list";
         gap: 10px;
       }
 
-      .comment-wrapper {
-        border-radius: 10px;
-        background-color: rgba(40, 40, 40, 0.15);
-        margin-top: 10px;
+      .list-title {
+        font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 10px;
       }
 
+      .comment-wrapper {
+        margin-top: 10px;
+      }
     `
   ]
 })
 
 export class PostCardComponent implements OnInit {
   @Input() post!: Post
-  @Output() expandEvent = new EventEmitter<string>()
 
   cardBody: PostBody | null = null
 

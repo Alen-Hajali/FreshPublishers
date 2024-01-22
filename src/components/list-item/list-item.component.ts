@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatListItem} from "@angular/material/list";
 
 @Component({
@@ -8,12 +8,15 @@ import {MatListItem} from "@angular/material/list";
     MatListItem
   ],
   template: `
-    <mat-list-item role="listitem" color="accent">
+    <mat-list-item role="listitem" class="list-item">
       <ng-content></ng-content>
     </mat-list-item>
   `,
   styles: [
     `
+      .list-item {
+        background-color: rgba(40, 40, 40, 0.15);
+      }
     `
   ]
 })
